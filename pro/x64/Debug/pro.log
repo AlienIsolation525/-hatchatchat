@@ -1,0 +1,5 @@
+﻿  Chat.cpp
+  Main.cpp
+  Создание кода...
+C:\Users\asdf\Desktop\dgf\pro\pro\Chat.cpp(20): warning C4715: Chat::getUserName: значение возвращается не при всех путях выполнения
+  pro.vcxproj -> C:\Users\asdf\Desktop\dgf\pro\x64\Debug\pro.exe

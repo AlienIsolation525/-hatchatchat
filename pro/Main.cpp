@@ -1,6 +1,9 @@
 #include "Message.h"
 #include "Chat.h"
+#include <windows.h>
+#include <Lmcons.h>
 #include <iostream>
+
 #if defined(_WIN32) 
 #define PLATFORM_NAME "windows 32-bit" // Windows 32-bit
 #elif defined(_WIN64)
@@ -19,24 +22,37 @@
 #endif
 
 using namespace std;
-
+void ShowSystemInfo()
+{
+	cout << "SYSTEM INFO" << endl;
+	//linux
+	#if defined(__linux__)
+	struct utsname utsname;
+	uname(&utsname);
+	cout << "OS name: " << utsname.sysname << endl;
+	cout << "Host name: " << utsname.nodename << endl;
+	cout << "OS release: " << utsname.release << endl;
+	cout << "OS version: " << utsname.version << endl;
+	cout << "Machine name: " << utsname.machine << endl;
+	#endif
+	//windows
+	if (PLATFORM_NAME == "windows 32-bit" || PLATFORM_NAME == "windows 64-bit")
+	{
+		int bi;
+		if (PLATFORM_NAME == "windows 32-bit") bi = 32;
+		else bi = 64;
+		TCHAR name[UNLEN + 1];
+		DWORD size = UNLEN + 1;
+		cout << "OS name: Windows " << bi << " bit" << endl;
+		if (GetUserName((TCHAR*)name, &size))
+			wcout << L"Host name: " << name << L"\n";
+	}
+	cout << "SYSTEM INFO" << endl;
+}
 
 auto main() -> int
 {
-	//linux
-
-	#if defined(__linux__)
-	struct utsname utsname;
-    uname(&utsname);
-    cout << "OS name: " << utsname.sysname << endl;
-    cout << "Host name: " << utsname.nodename << endl;
-    cout << "OS release: " << utsname.release << endl;
-    cout << "OS version: " << utsname.version << endl;
-    cout << "Machine name: " << utsname.machine << endl;
-	#endif
-	//windows
-
-
+	ShowSystemInfo();
 	Chat chat;
 	//chat.Start();
 	while (true)

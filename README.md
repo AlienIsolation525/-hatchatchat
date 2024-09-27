@@ -6,4 +6,4 @@ IT webcourse Skillfactory
 первого блока курса, с использованием контейнеров стандартной библиотеки шаблонов.
 
 Upd: 
-Вывод информации о системе и пользователе. Сборка Windows/Linux os
+Now displays user/os info. Build Windows/Linux
